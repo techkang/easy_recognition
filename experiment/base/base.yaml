@@ -1,0 +1,40 @@
+solver:
+  max_iter: 300000
+  save_interval: 100000
+  eval_interval: 10000
+
+dataloader:
+  num_workers: 4
+  batch_size: 128
+  prefetch_factor: 10
+  collector: resize
+
+dataset:
+  gray_scale: False
+  train:
+    dataset:
+      - "Syn90k/Syn90k_origin.lmdb"
+      - "SynthText/synthtext_origin.lmdb"
+    height: 32
+    min_width: 32
+    max_width: 512
+    divisible: 4
+    loader: lmdb_loader
+  eval:
+    dataset:
+      - "icdar_2013/ic13_test.lmdb"
+      - "IIIT5K/iiit5k_test.lmdb"
+      - "svt/svt_test.lmdb"
+      - "icdar_2015/ic15_test.lmdb"
+      - "svtp/svtp_test.lmdb"
+      - "ct80/ct80_test.lmdb"
+    height: 32
+    min_width: 32
+    max_width: 512
+    divisible: 4
+    loader: lmdb_loader
+
+charset:
+  name: AsciiCharset
+  use_space: False
+  target_length: 40

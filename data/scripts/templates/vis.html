@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<style>
+    input.search {
+        width: 5em;
+        height: 2em;
+    }
+</style>
+
+<head>
+    <title>LMDB Visualizer</title>
+</head>
+<body>
+<h2>Basic Info</h2>
+<ol>
+    <li>Total Count: {{ count }}</li>
+    <li>Dataset Name: {{ dataset }}</li>
+</ol>
+
+<h2>Regenerate</h2>
+Regenerate some samples from the lmdb <br>
+
+<a href=" {{ url_for('vis') }}">refresh</a>
+
+<h2>Samples</h2><br>
+<ol>
+    {% for sample in samples %}
+        <li>file path: {{ sample[2] }}, dataset: {{ sample[3] }}, label: {{ sample[1] }} </li>
+        <img src="{{ url_for('static', filename=sample[-1]) }}?{{ version }}" alt="{{ sample[-1] }}.jpg" height="32">
+    {% endfor %}
+</ol><br>
+
+</body>
+</html>
